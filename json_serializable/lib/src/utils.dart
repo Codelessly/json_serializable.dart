@@ -100,6 +100,7 @@ ClassConfig mergeConfig(
   final converters = reader.read('converters');
 
   return ClassConfig(
+    useDynamics: annotation.useDynamics ?? config.useDynamics,
     anyMap: annotation.anyMap ?? config.anyMap,
     checked: annotation.checked ?? config.checked,
     constructor: constructor,

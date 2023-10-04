@@ -77,6 +77,9 @@ class MapHelper extends TypeHelper<TypeHelperContextWithConfig> {
 
     if (!isKeyStringable) {
       if (valueArgIsAny) {
+        if (context.config.useDynamics) {
+          return expression;
+        }
         if (context.config.anyMap) {
           if (keyArg.isLikeDynamic) {
             return '$expression as Map$optionalQuestion';
@@ -104,7 +107,11 @@ class MapHelper extends TypeHelper<TypeHelperContextWithConfig> {
 
     final itemSubVal = context.deserialize(valueArg, closureArg);
 
-    var mapCast = context.config.anyMap ? 'as Map' : 'as Map<String, dynamic>';
+    var mapCast = context.config.useDynamics
+        ? 'dynamic'
+        : context.config.anyMap
+            ? 'as Map'
+            : 'as Map<String, dynamic>';
 
     if (targetTypeIsNullable) {
       mapCast += '?';

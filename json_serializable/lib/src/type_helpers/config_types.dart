@@ -25,6 +25,8 @@ class KeyConfig {
 
   final String? readValueFunctionName;
 
+  final String? excludeIfFunctionName;
+
   KeyConfig({
     required this.defaultValue,
     required this.disallowNullValue,
@@ -33,6 +35,7 @@ class KeyConfig {
     required this.includeToJson,
     required this.name,
     required this.readValueFunctionName,
+    required this.excludeIfFunctionName,
     required this.required,
     required this.unknownEnumValue,
   });
@@ -43,6 +46,7 @@ class KeyConfig {
 ///
 /// Values are all known, so types are non-nullable.
 class ClassConfig {
+  final bool useDynamics;
   final bool anyMap;
   final bool checked;
   final String constructor;
@@ -60,6 +64,7 @@ class ClassConfig {
   final List<DartObject> converters;
 
   const ClassConfig({
+    required this.useDynamics,
     required this.anyMap,
     required this.checked,
     required this.constructor,
@@ -80,6 +85,7 @@ class ClassConfig {
   factory ClassConfig.fromJsonSerializable(JsonSerializable config) =>
       // #CHANGE WHEN UPDATING json_annotation
       ClassConfig(
+        useDynamics: config.useDynamics ?? ClassConfig.defaults.useDynamics,
         checked: config.checked ?? ClassConfig.defaults.checked,
         anyMap: config.anyMap ?? ClassConfig.defaults.anyMap,
         constructor: config.constructor ?? ClassConfig.defaults.constructor,
@@ -107,6 +113,7 @@ class ClassConfig {
   /// An instance of [JsonSerializable] with all fields set to their default
   /// values.
   static const defaults = ClassConfig(
+    useDynamics: false,
     anyMap: false,
     checked: false,
     constructor: '',

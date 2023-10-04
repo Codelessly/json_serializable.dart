@@ -29,7 +29,11 @@ mixin DecodeHelper implements HelperCore {
     assert(config.createFactory);
     final buffer = StringBuffer();
 
-    final mapType = config.anyMap ? 'Map' : 'Map<String, dynamic>';
+    final mapType = config.useDynamics
+        ? 'dynamic'
+        : config.anyMap
+            ? 'Map'
+            : 'Map<String, dynamic>';
     buffer.write('$targetClassReference '
         '${prefix}FromJson${genericClassArgumentsImpl(withConstraints: true)}'
         '($mapType json');

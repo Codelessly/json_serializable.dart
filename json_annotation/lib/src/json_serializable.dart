@@ -39,6 +39,9 @@ enum FieldRename {
 )
 @Target({TargetKind.classType})
 class JsonSerializable {
+
+  final bool? useDynamics;
+
   /// If `true`, [Map] types are *not* assumed to be [Map<String, dynamic>]
   /// – which is the default type of [Map] instances return by JSON decode in
   /// `dart:convert`.
@@ -244,6 +247,7 @@ class JsonSerializable {
   const JsonSerializable({
     @Deprecated('Has no effect') bool? nullable,
     this.anyMap,
+    this.useDynamics,
     this.checked,
     this.constructor,
     this.createFieldMap,
@@ -267,6 +271,7 @@ class JsonSerializable {
   @Deprecated('Was only ever included to support builder infrastructure.')
   static const defaults = JsonSerializable(
     anyMap: false,
+    useDynamics: false,
     checked: false,
     constructor: '',
     createFactory: true,
@@ -287,6 +292,7 @@ class JsonSerializable {
   @Deprecated('Was only ever included to support builder infrastructure.')
   JsonSerializable withDefaults() => JsonSerializable(
         anyMap: anyMap ?? defaults.anyMap,
+        useDynamics: useDynamics ?? defaults.useDynamics,
         checked: checked ?? defaults.checked,
         constructor: constructor ?? defaults.constructor,
         createFactory: createFactory ?? defaults.createFactory,

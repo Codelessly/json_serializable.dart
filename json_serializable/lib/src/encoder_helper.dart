@@ -13,6 +13,45 @@ import 'type_helpers/generic_factory_helper.dart';
 import 'type_helpers/json_converter_helper.dart';
 import 'unsupported_type_error.dart';
 
+const String iterableEqualityFunctions = '''
+    /// Code from: https://github.com/google/quiver-dart/blob/master/lib/src/collection/utils.dart
+    bool listsEqual(List? a, List? b) {
+      if (a == b) return true;
+      if (a == null || b == null) return false;
+      if (a.length != b.length) return false;
+    
+      for (int i = 0; i < a.length; i++) {
+        if (a[i] != b[i]) return false;
+      }
+    
+      return true;
+    }
+
+    /// Code from: https://github.com/google/quiver-dart/blob/master/lib/src/collection/utils.dart
+    bool mapsEqual(Map? a, Map? b) {
+      if (a == b) return true;
+      if (a == null || b == null) return false;
+      if (a.length != b.length) return false;
+    
+      for (final k in a.keys) {
+        var bValue = b[k];
+        if (bValue == null && !b.containsKey(k)) return false;
+        if (bValue != a[k]) return false;
+      }
+    
+      return true;
+    }
+    
+    /// Code from: https://github.com/google/quiver-dart/blob/master/lib/src/collection/utils.dart
+    bool setsEqual(Set? a, Set? b) {
+      if (a == b) return true;
+      if (a == null || b == null) return false;
+      if (a.length != b.length) return false;
+    
+      return a.containsAll(b);
+    }
+''';
+
 mixin EncodeHelper implements HelperCore {
   String _fieldAccess(FieldElement field) => '$_toJsonParamName.${field.name}';
 
@@ -143,12 +182,26 @@ mixin EncodeHelper implements HelperCore {
       }
 
       final expression = _serializeField(field, safeFieldAccess);
-      if (_canWriteJsonWithoutNullCheck(field)) {
+
+      final jsonKey = jsonKeyFor(field);
+      final hasDefaultValue = jsonKey.defaultValue != null;
+      final excludeIfFunction = jsonKey.excludeIfFunctionName;
+
+      if (_canWriteJsonWithoutNullCheck(field) && !hasDefaultValue) {
         if (directWrite) {
+          if (excludeIfFunction != null) {
+            buffer.writeln('      if (!$excludeIfFunction(instance))');
+          }
           buffer.writeln('      $safeJsonKeyString: $expression,');
         } else {
+          if (excludeIfFunction != null) {
+            buffer.writeln('      if (!$excludeIfFunction(instance)) {');
+          }
           buffer.writeln(
               '    $generatedLocalVarName[$safeJsonKeyString] = $expression;');
+          if (excludeIfFunction != null) {
+            buffer.writeln('      }');
+          }
         }
       } else {
         if (directWrite) {
@@ -156,20 +209,43 @@ mixin EncodeHelper implements HelperCore {
           buffer
             ..writeln('    };')
             ..writeln()
+            ..writeln(iterableEqualityFunctions)
 
             // write the helper to be used by all following null-excluding
             // fields
             ..writeln('''
-    void $toJsonMapHelperName(String key, dynamic value) {
-      if (value != null) {
-        $generatedLocalVarName[key] = value;
+    void $toJsonMapHelperName(String key, dynamic value, dynamic jsonValue, dynamic defaultValue) {
+      if (value == null) return;
+      bool areEqual = false;
+      if (value is List) {
+        areEqual = listsEqual(value, defaultValue);
+      } else if (value is Map) {
+        areEqual = mapsEqual(value, defaultValue);
+      } else if (value is Set) {
+        areEqual = setsEqual(value, defaultValue);
+      } else {
+        areEqual = value == defaultValue;
+      }
+
+      if (!areEqual) {
+        $generatedLocalVarName[key] = jsonValue;
       }
     }
 ''');
           directWrite = false;
         }
+
+        final defaultValue = jsonKey.defaultValue;
+
+        if (excludeIfFunction != null) {
+          buffer.writeln('      if (!$excludeIfFunction(instance)) {');
+        }
         buffer.writeln(
-            '    $toJsonMapHelperName($safeJsonKeyString, $expression);');
+          '    $toJsonMapHelperName($safeJsonKeyString, $safeFieldAccess, $expression, $defaultValue);',
+        );
+        if (excludeIfFunction != null) {
+          buffer.writeln('      }');
+        }
       }
     }
 
@@ -193,6 +269,10 @@ mixin EncodeHelper implements HelperCore {
   /// we can avoid checking for `null`.
   bool _canWriteJsonWithoutNullCheck(FieldElement field) {
     final jsonKey = jsonKeyFor(field);
+
+    if (jsonKey.defaultValue != null) {
+      return false;
+    }
 
     if (jsonKey.includeIfNull) {
       return true;

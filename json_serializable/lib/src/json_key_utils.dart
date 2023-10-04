@@ -237,6 +237,13 @@ KeyConfig _from(FieldElement element, ClassConfig classAnnotation) {
         readValue.objectValue.toFunctionValue()!.qualifiedName;
   }
 
+  String? excludeIfValueFunctionName;
+  final excludeIfValue = obj.read('excludeIf');
+  if (!excludeIfValue.isNull) {
+    excludeIfValueFunctionName =
+        excludeIfValue.objectValue.toFunctionValue()!.qualifiedName;
+  }
+
   final ignore = obj.read('ignore').literalValue as bool?;
   var includeFromJson = obj.read('includeFromJson').literalValue as bool?;
   var includeToJson = obj.read('includeToJson').literalValue as bool?;
@@ -268,6 +275,7 @@ KeyConfig _from(FieldElement element, ClassConfig classAnnotation) {
     includeIfNull: obj.read('includeIfNull').literalValue as bool?,
     name: obj.read('name').literalValue as String?,
     readValueFunctionName: readValueFunctionName,
+    excludeIfFunctionName: excludeIfValueFunctionName,
     required: obj.read('required').literalValue as bool?,
     unknownEnumValue:
         createAnnotationValue('unknownEnumValue', mustBeEnum: true),
@@ -284,6 +292,7 @@ KeyConfig _populateJsonKey(
   bool? includeIfNull,
   String? name,
   String? readValueFunctionName,
+  String? excludeIfFunctionName,
   bool? required,
   String? unknownEnumValue,
   bool? includeToJson,
@@ -305,6 +314,7 @@ KeyConfig _populateJsonKey(
         includeIfNull, disallowNullValue, classAnnotation.includeIfNull),
     name: name ?? encodedFieldName(classAnnotation.fieldRename, element.name),
     readValueFunctionName: readValueFunctionName,
+    excludeIfFunctionName: excludeIfFunctionName,
     required: required ?? false,
     unknownEnumValue: unknownEnumValue,
     includeFromJson: includeFromJson,

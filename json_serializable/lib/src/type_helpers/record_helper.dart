@@ -42,7 +42,10 @@ class RecordHelper extends TypeHelper<TypeHelperContextWithConfig> {
 
     context.addMember(
       _recordConvertImpl(
-          nullable: targetType.isNullableType, anyMap: context.config.anyMap),
+        nullable: targetType.isNullableType,
+        anyMap: context.config.anyMap,
+        usesDynamic: context.config.useDynamics,
+      ),
     );
 
     final recordLiteral = '(${items.map((e) => '$e,').join()})';
@@ -105,11 +108,20 @@ $helperName(
 String _recordConvertName({required bool nullable, required bool anyMap}) =>
     '_\$recordConvert${anyMap ? 'Any' : ''}${nullable ? 'Nullable' : ''}';
 
-String _recordConvertImpl({required bool nullable, required bool anyMap}) {
-  final name = _recordConvertName(nullable: nullable, anyMap: anyMap);
+String _recordConvertImpl({
+  required bool nullable,
+  required bool anyMap,
+  required bool usesDynamic,
+}) {
+  final name = _recordConvertName(
+    nullable: nullable,
+    anyMap: anyMap,
+  );
 
-  var expression =
-      'convert(value as ${anyMap ? 'Map' : 'Map<String, dynamic>'})';
+  var expression = usesDynamic
+      ? 'convert(value)'
+      : 'convert(value as ${anyMap ? 'Map' : 'Map<String, dynamic>'})';
+
   if (nullable) {
     expression = ifNullOrElse('value', 'null', expression);
   }
@@ -117,7 +129,7 @@ String _recordConvertImpl({required bool nullable, required bool anyMap}) {
   return '''
 \$Rec${nullable ? '?' : ''} $name<\$Rec>(
   Object? value,
-  \$Rec Function(Map) convert,
+  \$Rec Function(${usesDynamic ? 'dynamic' : 'Map'}) convert,
 ) =>
   $expression;
 ''';

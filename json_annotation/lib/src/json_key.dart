@@ -7,9 +7,11 @@ import 'package:meta/meta_meta.dart';
 import 'allowed_keys_helpers.dart';
 import 'json_serializable.dart';
 
+typedef ExcludeIfFunction<T extends Object> = bool Function(T object);
+
 /// An annotation used to specify how a field is serialized.
 @Target({TargetKind.field, TargetKind.getter})
-class JsonKey {
+class JsonKey<T extends Object> {
   /// The value to use if the source JSON does not contain this key or if the
   /// value is `null`.
   ///
@@ -42,6 +44,8 @@ class JsonKey {
   /// (the default), you should also set [toJson] if you set [fromJson].
   /// Values returned by [toJson] should "round-trip" through [fromJson].
   final Function? fromJson;
+
+  final ExcludeIfFunction<T>? excludeIf;
 
   /// `true` if the generator should ignore this field completely.
   ///
@@ -170,6 +174,7 @@ class JsonKey {
     this.required,
     this.toJson,
     this.unknownEnumValue,
+    this.excludeIf,
   });
 
   /// Sentinel value for use with [unknownEnumValue].

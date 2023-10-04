@@ -119,7 +119,8 @@ class JsonHelper extends TypeHelper<TypeHelperContextWithConfig> {
 
       output = args.join(', ');
     } else if (_annotation(context.config, targetType)?.createFactory == true) {
-      if (context.config.anyMap) {
+      if (context.config.useDynamics) {
+      } else if (context.config.anyMap) {
         output += ' as Map';
       } else {
         output += ' as Map<String, dynamic>';
