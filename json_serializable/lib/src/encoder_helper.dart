@@ -13,45 +13,6 @@ import 'type_helpers/generic_factory_helper.dart';
 import 'type_helpers/json_converter_helper.dart';
 import 'unsupported_type_error.dart';
 
-const String iterableEqualityFunctions = '''
-    /// Code from: https://github.com/google/quiver-dart/blob/master/lib/src/collection/utils.dart
-    bool listsEqual(List? a, List? b) {
-      if (a == b) return true;
-      if (a == null || b == null) return false;
-      if (a.length != b.length) return false;
-    
-      for (int i = 0; i < a.length; i++) {
-        if (a[i] != b[i]) return false;
-      }
-    
-      return true;
-    }
-
-    /// Code from: https://github.com/google/quiver-dart/blob/master/lib/src/collection/utils.dart
-    bool mapsEqual(Map? a, Map? b) {
-      if (a == b) return true;
-      if (a == null || b == null) return false;
-      if (a.length != b.length) return false;
-    
-      for (final k in a.keys) {
-        var bValue = b[k];
-        if (bValue == null && !b.containsKey(k)) return false;
-        if (bValue != a[k]) return false;
-      }
-    
-      return true;
-    }
-    
-    /// Code from: https://github.com/google/quiver-dart/blob/master/lib/src/collection/utils.dart
-    bool setsEqual(Set? a, Set? b) {
-      if (a == b) return true;
-      if (a == null || b == null) return false;
-      if (a.length != b.length) return false;
-    
-      return a.containsAll(b);
-    }
-''';
-
 mixin EncodeHelper implements HelperCore {
   String _fieldAccess(FieldElement field) => '$_toJsonParamName.${field.name}';
 
@@ -209,25 +170,13 @@ mixin EncodeHelper implements HelperCore {
           buffer
             ..writeln('    };')
             ..writeln()
-            ..writeln(iterableEqualityFunctions)
-
             // write the helper to be used by all following null-excluding
             // fields
             ..writeln('''
     void $toJsonMapHelperName(String key, dynamic value, dynamic jsonValue, dynamic defaultValue) {
-      if (value == null) return;
-      bool areEqual = false;
-      if (value is List) {
-        areEqual = listsEqual(value, defaultValue);
-      } else if (value is Map) {
-        areEqual = mapsEqual(value, defaultValue);
-      } else if (value is Set) {
-        areEqual = setsEqual(value, defaultValue);
-      } else {
-        areEqual = value == defaultValue;
-      }
+      final bool serialize = shouldSerialize(key, value, jsonValue, defaultValue);
 
-      if (!areEqual) {
+      if (serialize) {
         $generatedLocalVarName[key] = jsonValue;
       }
     }
