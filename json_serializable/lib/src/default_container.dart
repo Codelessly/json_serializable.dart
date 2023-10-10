@@ -34,7 +34,12 @@ class DefaultContainer {
     }
 
     if (defaultValue != null) {
-      value = '$value ?? $defaultValue';
+      if (defaultValue.startsWith('const') &&
+          (defaultValue.endsWith('[]') || defaultValue.endsWith('{}'))) {
+        return '$value ?? ${defaultValue.replaceFirst('const', '')}';
+      } else {
+        value = '$value ?? $defaultValue';
+      }
     }
     return value;
   }

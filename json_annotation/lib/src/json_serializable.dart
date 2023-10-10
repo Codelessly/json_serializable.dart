@@ -39,7 +39,6 @@ enum FieldRename {
 )
 @Target({TargetKind.classType})
 class JsonSerializable {
-
   final bool? useDynamics;
 
   /// If `true`, [Map] types are *not* assumed to be [Map<String, dynamic>]
@@ -209,6 +208,8 @@ class JsonSerializable {
   /// `includeIfNull`, that value takes precedent.
   final bool? includeIfNull;
 
+  final bool? serializeDefaultValues;
+
   /// A list of [JsonConverter] to apply to this class.
   ///
   /// Writing:
@@ -261,6 +262,7 @@ class JsonSerializable {
     this.converters,
     this.genericArgumentFactories,
     this.createPerFieldToJson,
+    this.serializeDefaultValues,
   });
 
   factory JsonSerializable.fromJson(Map<String, dynamic> json) =>
@@ -272,6 +274,7 @@ class JsonSerializable {
   static const defaults = JsonSerializable(
     anyMap: false,
     useDynamics: false,
+    serializeDefaultValues: true,
     checked: false,
     constructor: '',
     createFactory: true,
@@ -293,6 +296,8 @@ class JsonSerializable {
   JsonSerializable withDefaults() => JsonSerializable(
         anyMap: anyMap ?? defaults.anyMap,
         useDynamics: useDynamics ?? defaults.useDynamics,
+        serializeDefaultValues:
+            serializeDefaultValues ?? defaults.serializeDefaultValues,
         checked: checked ?? defaults.checked,
         constructor: constructor ?? defaults.constructor,
         createFactory: createFactory ?? defaults.createFactory,

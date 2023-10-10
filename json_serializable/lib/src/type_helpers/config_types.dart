@@ -46,6 +46,7 @@ class KeyConfig {
 ///
 /// Values are all known, so types are non-nullable.
 class ClassConfig {
+  final bool serializeDefaultValues;
   final bool useDynamics;
   final bool anyMap;
   final bool checked;
@@ -64,6 +65,7 @@ class ClassConfig {
   final List<DartObject> converters;
 
   const ClassConfig({
+    required this.serializeDefaultValues,
     required this.useDynamics,
     required this.anyMap,
     required this.checked,
@@ -85,6 +87,8 @@ class ClassConfig {
   factory ClassConfig.fromJsonSerializable(JsonSerializable config) =>
       // #CHANGE WHEN UPDATING json_annotation
       ClassConfig(
+        serializeDefaultValues: config.serializeDefaultValues ??
+            ClassConfig.defaults.serializeDefaultValues,
         useDynamics: config.useDynamics ?? ClassConfig.defaults.useDynamics,
         checked: config.checked ?? ClassConfig.defaults.checked,
         anyMap: config.anyMap ?? ClassConfig.defaults.anyMap,
@@ -113,6 +117,7 @@ class ClassConfig {
   /// An instance of [JsonSerializable] with all fields set to their default
   /// values.
   static const defaults = ClassConfig(
+    serializeDefaultValues: true,
     useDynamics: false,
     anyMap: false,
     checked: false,
@@ -130,6 +135,8 @@ class ClassConfig {
   );
 
   JsonSerializable toJsonSerializable() => JsonSerializable(
+        serializeDefaultValues: serializeDefaultValues,
+        useDynamics: useDynamics,
         checked: checked,
         anyMap: anyMap,
         constructor: constructor,

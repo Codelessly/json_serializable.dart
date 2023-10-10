@@ -6,15 +6,15 @@ bool mapsEqual(Map? a, Map? b) => const MapEquality().equals(a, b);
 
 bool setsEqual(Set? a, Set? b) => const SetEquality().equals(a, b);
 
-bool shouldSerialize(
-    String key, dynamic value, dynamic jsonValue, dynamic defaultValue) {
+bool shouldSerialize(String key, dynamic value, dynamic jsonValue,
+    dynamic defaultValue, bool serializeDefaultValues) {
   if (value == null) return false;
   if (value is List && defaultValue is List) {
-    return !listsEqual(value, defaultValue);
+    return serializeDefaultValues || !listsEqual(value, defaultValue);
   } else if (value is Map && defaultValue is Map) {
-    return !mapsEqual(value, defaultValue);
+    return serializeDefaultValues || !mapsEqual(value, defaultValue);
   } else if (value is Set && defaultValue is Set) {
-    return !setsEqual(value, defaultValue);
+    return serializeDefaultValues || !setsEqual(value, defaultValue);
   }
-  return value != defaultValue;
+  return serializeDefaultValues || value != defaultValue;
 }

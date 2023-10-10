@@ -100,6 +100,8 @@ ClassConfig mergeConfig(
   final converters = reader.read('converters');
 
   return ClassConfig(
+    serializeDefaultValues:
+        annotation.serializeDefaultValues ?? config.serializeDefaultValues,
     useDynamics: annotation.useDynamics ?? config.useDynamics,
     anyMap: annotation.anyMap ?? config.anyMap,
     checked: annotation.checked ?? config.checked,

@@ -26,7 +26,9 @@ JsonSerializable _$JsonSerializableFromJson(Map<String, dynamic> json) =>
             'field_rename',
             'generic_argument_factories',
             'ignore_unannotated',
-            'include_if_null'
+            'include_if_null',
+            'use_dynamics',
+            'serialize_default_values',
           ],
         );
         final val = JsonSerializable(
@@ -50,6 +52,9 @@ JsonSerializable _$JsonSerializableFromJson(Map<String, dynamic> json) =>
               $checkedConvert('generic_argument_factories', (v) => v as bool?),
           createPerFieldToJson:
               $checkedConvert('create_per_field_to_json', (v) => v as bool?),
+          serializeDefaultValues:
+              $checkedConvert('serialize_default_values', (v) => v as bool?),
+          useDynamics: $checkedConvert('use_dynamics', (v) => v as bool?),
         );
         return val;
       },
@@ -64,7 +69,8 @@ JsonSerializable _$JsonSerializableFromJson(Map<String, dynamic> json) =>
         'ignoreUnannotated': 'ignore_unannotated',
         'includeIfNull': 'include_if_null',
         'genericArgumentFactories': 'generic_argument_factories',
-        'createPerFieldToJson': 'create_per_field_to_json'
+        'createPerFieldToJson': 'create_per_field_to_json',
+        'useDynamics': 'use_dynamics',
       },
     );
 
@@ -83,6 +89,8 @@ Map<String, dynamic> _$JsonSerializableToJson(JsonSerializable instance) =>
       'generic_argument_factories': instance.genericArgumentFactories,
       'ignore_unannotated': instance.ignoreUnannotated,
       'include_if_null': instance.includeIfNull,
+      'serialize_default_values': instance.serializeDefaultValues,
+      'use_dynamics': instance.useDynamics,
     };
 
 const _$FieldRenameEnumMap = {

@@ -174,7 +174,7 @@ mixin EncodeHelper implements HelperCore {
             // fields
             ..writeln('''
     void $toJsonMapHelperName(String key, dynamic value, dynamic jsonValue, dynamic defaultValue) {
-      final bool serialize = shouldSerialize(key, value, jsonValue, defaultValue);
+      final bool serialize = shouldSerialize(key, value, jsonValue, defaultValue, ${config.serializeDefaultValues});
 
       if (serialize) {
         $generatedLocalVarName[key] = jsonValue;
