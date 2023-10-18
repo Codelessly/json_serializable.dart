@@ -9,7 +9,7 @@ targets:
           # Only for the JSON literal output file
           - text_direction_code_point_in_literal
 
-      codelessly_codelessly_json_serializable:
+      codelessly_json_serializable:
         generate_for:
         - example/*
         - test/default_value/*
@@ -52,7 +52,7 @@ builders:
       - .g_exclude_null.dart
       - .g_explicit_to_json.dart
     build_to: source
-    runs_before: ["json_serializable"]
+    runs_before: ["codelessly_json_serializable"]
 
   _type_builder:
     import: 'tool/test_type_builder.dart'
@@ -76,7 +76,7 @@ builders:
       - .type_string.dart
       - .type_uri.dart
     build_to: source
-    runs_before: ["json_serializable"]
+    runs_before: ["codelessly_json_serializable"]
 
   _type_test_builder:
     import: 'tool/test_type_builder.dart'
@@ -99,7 +99,7 @@ builders:
       - .string_test.dart
       - .uri_test.dart
     build_to: source
-    runs_before: ["json_serializable"]
+    runs_before: ["codelessly_json_serializable"]
 
   _field_matrix_builder:
     import: 'tool/field_matrix_builder.dart'
@@ -107,7 +107,7 @@ builders:
     build_extensions:
       .dart: [.field_matrix.dart]
     build_to: source
-    runs_before: ["json_serializable"]
+    runs_before: ["codelessly_json_serializable"]
 
   _readme_builder:
     import: "tool/readme_builder.dart"
