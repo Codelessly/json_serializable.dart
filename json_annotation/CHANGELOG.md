@@ -15,7 +15,7 @@
 - Added `JsonSerializable.createPerFieldToJson` which allows generating
   a `_$ModelPerFieldToJson`, enabling partial encoding of a model.
 - Update `JsonKey` documentation to align with new features in 
-  `package:json_serializable`.
+  `package:codelessly_json_serializable`.
 - Require Dart SDK `>=2.18.0`.
 
 ## 4.7.0
@@ -65,7 +65,7 @@
 ## 4.1.0
 
 - Added a `const` constructor to `JsonConverter`.
-- Added `$checkedCreate` helper that will be used by `package:json_serializable`
+- Added `$checkedCreate` helper that will be used by `package:codelessly_json_serializable`
   v5+ and replaces both `$checkedNew` and `$checkedConvert`.
 - Annotate annotations with the supported target types, to minimize incorrect
   usage.
@@ -148,7 +148,7 @@
 - **Potentially Breaking** `JsonSerializable` no longer sets default values for
   fields when constructor arguments are unset or `null`. This is not likely an
   issue for developers using this class as an annotation with a compatible
-  version of `package:json_serializable`, but it may cause issues if class is
+  version of `package:codelessly_json_serializable`, but it may cause issues if class is
   used in other contexts.
 
 - Support all `build.yaml` configuration options on classes by adding a number
@@ -170,7 +170,7 @@
   serialization value.
 
 - Removed `$checkAllowedKeys`, `$enumDecode` and `$enumDecodeNullable` which are
-  no longer needed by the latest release of `package:json_serializable`.
+  no longer needed by the latest release of `package:codelessly_json_serializable`.
 
 ## 0.2.9+1
 
@@ -249,7 +249,7 @@
 - Added a helper class – `$JsonMapWrapper` – and helper functions – `$wrapMap`,
   `$wrapMapHandleNull`, `$wrapList`, and `$wrapListHandleNull` – to support the
   `useWrappers` option added to `JsonSerializableGenerator` in `v0.3.0` of
-  `package:json_serializable`.
+  `package:codelessly_json_serializable`.
 
 ## 0.2.1
 
