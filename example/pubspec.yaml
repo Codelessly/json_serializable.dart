@@ -5,7 +5,7 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  json_annotation: ^4.8.0
+  codelessly_json_annotation: ^4.8.0
 
 dev_dependencies:
   # Used by tests. Not required to use `json_serializable`.
@@ -22,7 +22,7 @@ dev_dependencies:
   dart_flutter_team_lints: ^1.0.0
 
   # REQUIRED!
-  json_serializable: ^6.6.0
+  codelessly_json_serializable: ^6.6.0
 
   # Not required to use `json_serializable`.
   path: ^1.8.0
@@ -31,7 +31,7 @@ dev_dependencies:
 # This section is used to verify changes to these packages. Do not include in
 # your code!
 dependency_overrides:
-  json_annotation:
+  codelessly_json_annotation:
     path: ../json_annotation
-  json_serializable:
+  codelessly_json_serializable:
     path: ../json_serializable

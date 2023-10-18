@@ -9,7 +9,7 @@ targets:
           # Only for the JSON literal output file
           - text_direction_code_point_in_literal
 
-      json_serializable:
+      codelessly_codelessly_json_serializable:
         generate_for:
         - example/*
         - test/default_value/*
@@ -117,8 +117,8 @@ builders:
     auto_apply: root_package
     required_inputs: ['.dart']
 
-  json_serializable:
-    import: "package:json_serializable/builder.dart"
+  codelessly_json_serializable:
+    import: "package:codelessly_json_serializable/builder.dart"
     builder_factories: ["jsonSerializable"]
     build_extensions: {".dart": ["json_serializable.g.part"]}
     auto_apply: dependents

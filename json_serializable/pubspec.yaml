@@ -1,4 +1,4 @@
-name: json_serializable
+name: codelessly_json_serializable
 version: 6.7.1
 description: >-
   Automatically generate code for converting to and from JSON by annotating
@@ -21,7 +21,7 @@ dependencies:
 
   # Use a tight version constraint to ensure that a constraint on
   # `json_annotation` properly constrains all features it provides.
-  json_annotation: '>=4.8.1 <4.9.0'
+  codelessly_json_annotation: '>=4.8.1 <4.9.0'
   meta: ^1.3.0
   path: ^1.8.0
   pub_semver: ^2.0.0

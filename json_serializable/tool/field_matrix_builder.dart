@@ -20,7 +20,7 @@ class _FieldMatrixBuilder extends Builder {
     final output = buildStep.allowedOutputs.single;
 
     final content = StringBuffer('''
-import 'package:json_annotation/json_annotation.dart';
+import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';
 
 part '$inputBaseName.field_matrix.g.dart';
 ''');

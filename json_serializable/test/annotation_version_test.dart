@@ -9,7 +9,7 @@ library test;
 
 import 'dart:io';
 
-import 'package:json_serializable/src/check_dependencies.dart';
+import 'package:codelessly_json_serializable/src/check_dependencies.dart';
 import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
@@ -152,7 +152,7 @@ class NoOp {}
       d.file(
         'sample.dart',
         '''
-import 'package:json_annotation/json_annotation.dart';
+import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';
 
 part 'sample.g.dart';
 

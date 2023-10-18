@@ -4,7 +4,7 @@
 
 import 'dart:collection';
 
-import 'package:json_annotation/json_annotation.dart';
+import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';
 
 @JsonEnum(fieldRename: FieldRename.kebab)
 enum Category {

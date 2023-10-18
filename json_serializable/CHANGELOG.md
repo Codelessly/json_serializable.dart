@@ -91,7 +91,7 @@
 ## 6.2.0
 
 - Added support for the new `FieldRename.screamingSnake` field in
-  `package:json_annotation`.
+  `package:codelessly_json_annotation`.
 
 ## 6.1.6
 
@@ -123,7 +123,7 @@
 - Support `JsonKey.readValue` to allow customized reading of values from source
   JSON map objects.
 - The check to make sure there is a correctly constrained dependency on
-  `package:json_annotation` is now a warning and doesn't fail the build.
+  `package:codelessly_json_annotation` is now a warning and doesn't fail the build.
 - Require `json_annotation` `'>=4.4.0 <4.5.0'`.
 
 ## 6.0.1
@@ -134,7 +134,7 @@
 
 - Added support for `JsonSerializable.constructor` to allow specifying an
   alternative constructor to invoke when creating a `fromJson` helper.
-- Support the new `@JsonEnum` annotation in `package:json_annotation`.
+- Support the new `@JsonEnum` annotation in `package:codelessly_json_annotation`.
 - Support `JsonKey.nullForUndefinedEnumValue` as a value for
   `JsonKey.unknownEnumValue` when you want to use `null` as the unknown value.
 - Use the new `$enumDecodeNullable` and `$enumDecode` in `json_annotation'
@@ -142,7 +142,7 @@
   breaking change if any user code relies on the previously generated private
   functions.
 - The builder now checks to make sure there is a correctly constrained
-  dependency on `package:json_annotation`.
+  dependency on `package:codelessly_json_annotation`.
 - Require Dart SDK `>=2.14.0`.
 - Require `json_annotation` `'>=4.3.0 <4.4.0'`.
 
@@ -163,7 +163,7 @@
   change in generated code in some cases.
 - Fixed `fromJson` for `Map` fields with nullable values.
 - Improve names of private classes generated for `toJson` and `fromJson`.
-- Use the new `$checkedCreate` helper exposed in `package:json_annotation`
+- Use the new `$checkedCreate` helper exposed in `package:codelessly_json_annotation`
   v4.1+.
 - Generated code now conforms to this `prefer_expression_function_bodies` lint.
 - Support default values and types with a `fromJson` constructor.
@@ -175,7 +175,7 @@
 
 ## 4.1.4
 
-- Allow the latest `package:json_annotation`.
+- Allow the latest `package:codelessly_json_annotation`.
 
 ## 4.1.3
 
@@ -230,7 +230,7 @@
 ## 3.5.1
 
 - Improved error messages for unsupported types.
-- `package:json_serializable/type_helper.dart`
+- `package:codelessly_json_serializable/type_helper.dart`
   - Made the third parameter to `UnsupportedTypeError` positional (optional).
 - Require `package:analyzer` `>=0.39.0 <0.42.0`.
 
@@ -294,7 +294,7 @@
 
 - Add support for fields annotated subclasses of `JsonKey`.
 - Export the following `TypeHelper` implementations and interfaces in
-  `package:json_serializable/type_helper.dart`:
+  `package:codelessly_json_serializable/type_helper.dart`:
   - `DurationHelper`
   - `TypeHelperContextWithConfig`
 
@@ -320,7 +320,7 @@
 
 ## 3.2.0
 
-- Require `package:json_annotation` `^3.0.0`.
+- Require `package:codelessly_json_annotation` `^3.0.0`.
 - Added support for `JsonSerializable.ignoreUnannotated`.
 - Added support for `JsonKey.unknownEnumValue`.
 - Small change to how `enum` support code is generated.
@@ -376,7 +376,7 @@ future feature work.
 
 ## 2.1.2
 
-- Support `package:json_annotation` `>=2.1.0 <2.3.0`.
+- Support `package:codelessly_json_annotation` `>=2.1.0 <2.3.0`.
 
 ## 2.1.1
 
@@ -480,10 +480,10 @@ future feature work.
 ## 1.3.0
 
 - Add support for types annotated with classes that extend `JsonConverter` from
-  `package:json_annotation`.
+  `package:codelessly_json_annotation`.
 
 - Export the following `TypeHelper` implementations in
-  `package:json_serializable/type_helper.dart`: `ConvertHelper`, `EnumHelper`,
+  `package:codelessly_json_serializable/type_helper.dart`: `ConvertHelper`, `EnumHelper`,
   `IterableHelper`, `JsonConverterHelper`, `MapHelper`, `ValueHelper`
 
 - Added support for `Set` type as a target.
@@ -677,7 +677,7 @@ future feature work.
 
 - More comprehensive escaping of string literals.
 
-### `package:json_serializable/type_helper.dart`
+### `package:codelessly_json_serializable/type_helper.dart`
 
 - **Breaking** The `nullable` parameter on `TypeHelper.serialize` and
   `.deserialize` has been removed. It is now exposed in `SerializeContext` and
@@ -732,7 +732,7 @@ future feature work.
   `reason`.
 
 - **BREAKING** The deprecated `annotations.dart` library has been removed. Use
-  `package:json_annotation` instead.
+  `package:codelessly_json_annotation` instead.
 
 - **BREAKING** The arguments to `TypeHelper` `serialize` and `deserialize` have
   changed.
@@ -763,7 +763,7 @@ future feature work.
 
 ## 0.2.4
 
-- Moved the annotations in `annotations.dart` to `package:json_annotations`.
+- Moved the annotations in `annotations.dart` to `package:codelessly_json_annotations`.
 
   - Allows package authors to release code that has the corresponding
     annotations without requiring package users to inherit all the transitive
@@ -802,13 +802,13 @@ future feature work.
 
 - **BREAKING** Types are now segmented into their own libraries.
 
-  - `package:json_serializable/generators.dart` contains `Generator`
+  - `package:codelessly_json_serializable/generators.dart` contains `Generator`
     implementations.
 
-  - `package:json_serializable/annotations.dart` contains annotations. This
+  - `package:codelessly_json_serializable/annotations.dart` contains annotations. This
     library should be imported with your target classes.
 
-  - `package:json_serializable/type_helpers.dart` contains `TypeHelper` classes
+  - `package:codelessly_json_serializable/type_helpers.dart` contains `TypeHelper` classes
     and related helpers which allow custom generation for specific types.
 
 - **BREAKING** Generation fails for types that are not a JSON primitive or that

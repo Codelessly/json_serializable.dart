@@ -3,7 +3,7 @@
 Provides [Dart Build System] builders for handling JSON.
 
 The builders generate code when they find members annotated with classes defined
-in [package:json_annotation].
+in [package:codelessly_json_annotation].
 
 - To generate to/from JSON code for a class, annotate it with
   `ja:JsonSerializable`. You can provide arguments to `ja:JsonSerializable` to
@@ -130,7 +130,7 @@ configure code generation by setting values in `build.yaml`.
 targets:
   $default:
     builders:
-      json_serializable:
+      codelessly_json_serializable:
         options:
           # Options configure how source code is generated for every
           # `@JsonSerializable`-annotated class in the package.
@@ -153,4 +153,4 @@ targets:
 
 [example]: https://github.com/google/json_serializable.dart/tree/master/example
 [dart build system]: https://github.com/dart-lang/build
-[package:json_annotation]: https://pub.dev/packages/json_annotation
+[package:codelessly_json_annotation]: https://pub.dev/packages/json_annotation

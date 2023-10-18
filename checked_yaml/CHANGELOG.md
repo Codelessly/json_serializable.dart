@@ -32,12 +32,12 @@
 ## 1.0.3
 
 - Require at least Dart `2.7.0`.
-- Allow `package:json_annotation` `v4.x`.
+- Allow `package:codelessly_json_annotation` `v4.x`.
 
 ## 1.0.2
 
 - Require at least Dart `2.3.0`.
-- Support the latest `package:json_annotation`.
+- Support the latest `package:codelessly_json_annotation`.
 
 ## 1.0.1
 

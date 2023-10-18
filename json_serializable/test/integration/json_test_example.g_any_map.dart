@@ -5,7 +5,7 @@
 // ignore_for_file: hash_and_equals
 import 'dart:collection';
 
-import 'package:json_annotation/json_annotation.dart';
+import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';
 
 import '../test_utils.dart';
 import 'json_test_common.dart';

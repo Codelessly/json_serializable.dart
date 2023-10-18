@@ -29,5 +29,5 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.3.3
-  json_serializable: ^6.6.0
+  codelessly_json_serializable: ^6.6.0
 ''';

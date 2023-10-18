@@ -1,6 +1,6 @@
 _This example assumes you're using a recent version of the Dart or Flutter SDK._
 
-To use [package:json_serializable][json_serializable] in your package, add these
+To use [package:codelessly_json_serializable][json_serializable] in your package, add these
 dependencies to your `pubspec.yaml`.
 
 ```yaml
@@ -9,11 +9,11 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.3.3
-  json_serializable: ^6.6.0
+  codelessly_json_serializable: ^6.6.0
 ```
 
 Annotate your code with classes defined in
-[package:json_annotation][json_annotation].
+[package:codelessly_json_annotation][json_annotation].
 
 - See [`lib/example.dart`][example] for an example of a file using these
   annotations.

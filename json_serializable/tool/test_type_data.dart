@@ -5,7 +5,7 @@ const customEnumType = 'EnumType';
 const recordType = 'Record';
 
 const _annotationImport =
-    "import 'package:json_annotation/json_annotation.dart';";
+    "import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';";
 
 class TestTypeData {
   final bool stringParseType;
