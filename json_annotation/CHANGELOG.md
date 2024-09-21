@@ -1,3 +1,7 @@
+## 4.9.0+2
+
+- Export Json converters.
+
 ## 4.9.0+1
 
 - Add Json converters.
