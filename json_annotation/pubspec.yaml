@@ -1,5 +1,5 @@
 name: codelessly_json_annotation
-version: 4.8.1
+version: 4.9.0
 description: >-
   Classes and helper functions that support JSON code generation via the
   `json_serializable` package.
@@ -18,7 +18,7 @@ dependencies:
   meta: ^1.4.0
 
 dev_dependencies:
-  dart_flutter_team_lints: ^1.0.0
+  dart_flutter_team_lints: ^2.0.0
 # When changing JsonSerializable class.
 #  build_runner: ^2.0.0
 #  codelessly_json_serializable: any

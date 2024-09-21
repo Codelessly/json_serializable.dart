@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal
+// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal, inference_failure_on_function_invocation, inference_failure_on_collection_literal
 
 part of 'generic_class.dart';
 
@@ -38,15 +38,15 @@ GenericClassWithConverter<T, S>
         GenericClassWithConverter<T, S>()
           ..fieldObject = json['fieldObject']
           ..fieldDynamic = json['fieldDynamic']
-          ..fieldInt = json['fieldInt'] as int?
+          ..fieldInt = (json['fieldInt'] as num?)?.toInt()
           ..fieldT = _$JsonConverterFromJson<Map<String, dynamic>, T>(
               json['fieldT'], _SimpleConverter<T?>().fromJson)
           ..fieldS = _$JsonConverterFromJson<Map<String, dynamic>, S>(
               json['fieldS'], _SimpleConverter<S?>().fromJson)
           ..duration = const _DurationMillisecondConverter.named()
-              .fromJson(json['duration'] as int?)
+              .fromJson((json['duration'] as num?)?.toInt())
           ..listDuration = const _DurationListMillisecondConverter()
-              .fromJson(json['listDuration'] as int?);
+              .fromJson((json['listDuration'] as num?)?.toInt());
 
 Map<String, dynamic> _$GenericClassWithConverterToJson<T extends num, S>(
         GenericClassWithConverter<T, S> instance) =>

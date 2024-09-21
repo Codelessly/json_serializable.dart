@@ -24,6 +24,7 @@ void main() {
     }
 
     test('no type args', () {
+      // ignore: inference_failure_on_instance_creation
       roundTripGenericClass(GenericClass()
         ..fieldDynamic = 1
         ..fieldInt = 2
@@ -75,7 +76,7 @@ void main() {
       final decoded = GenericClassWithHelpers<DateTime, Duration>.fromJson(
         jsonDecode(encodedJson) as Map<String, dynamic>,
         (value) => DateTime.parse(value as String),
-        (value) => Duration(milliseconds: value as int),
+        (value) => Duration(milliseconds: (value as num).toInt()),
       );
 
       final encodedJson2 = loudEncode(
@@ -193,7 +194,7 @@ void main() {
           GenericClassWithHelpersNullable<DateTime, Duration>.fromJson(
         jsonDecode(encodedJson) as Map<String, dynamic>,
         (value) => DateTime.parse(value as String),
-        (value) => Duration(milliseconds: value as int),
+        (value) => Duration(milliseconds: (value as num).toInt()),
       );
 
       final encodedJson2 = loudEncode(
@@ -224,7 +225,7 @@ void main() {
           GenericClassWithHelpersNullable<DateTime, Duration>.fromJson(
         jsonDecode(encodedJson) as Map<String, dynamic>,
         (value) => DateTime.parse(value as String),
-        (value) => Duration(milliseconds: value as int),
+        (value) => Duration(milliseconds: (value as num).toInt()),
       );
 
       final encodedJson2 = loudEncode(

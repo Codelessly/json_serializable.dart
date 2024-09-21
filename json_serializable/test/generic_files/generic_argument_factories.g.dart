@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal
+// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal, inference_failure_on_function_invocation, inference_failure_on_collection_literal
 
 part of 'generic_argument_factories.dart';
 
@@ -34,7 +34,7 @@ ConcreteClass _$ConcreteClassFromJson(Map<String, dynamic> json) =>
     ConcreteClass(
       GenericClassWithHelpers<int, String>.fromJson(
           json['value'] as Map<String, dynamic>,
-          (value) => value as int,
+          (value) => (value as num).toInt(),
           (value) => value as String),
       GenericClassWithHelpers<double, BigInt>.fromJson(
           json['value2'] as Map<String, dynamic>,

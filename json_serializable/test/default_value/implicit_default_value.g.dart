@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal
+// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal, inference_failure_on_function_invocation, inference_failure_on_collection_literal
 
 part of 'implicit_default_value.dart';
 
@@ -13,14 +13,14 @@ DefaultValueImplicit _$DefaultValueImplicitFromJson(
     DefaultValueImplicit(
       fieldBool: json['fieldBool'] as bool? ?? true,
       fieldString: json['fieldString'] as String? ?? 'string',
-      fieldInt: json['fieldInt'] as int? ?? 42,
+      fieldInt: (json['fieldInt'] as num?)?.toInt() ?? 42,
       fieldDouble: (json['fieldDouble'] as num?)?.toDouble() ?? 3.14,
       fieldListEmpty: json['fieldListEmpty'] as List<dynamic>? ?? const [],
       fieldSetEmpty:
           (json['fieldSetEmpty'] as List<dynamic>?)?.toSet() ?? const {},
       fieldMapEmpty: json['fieldMapEmpty'] as Map<String, dynamic>? ?? const {},
       fieldListSimple: (json['fieldListSimple'] as List<dynamic>?)
-              ?.map((e) => e as int)
+              ?.map((e) => (e as num).toInt())
               .toList() ??
           const [1, 2, 3],
       fieldSetSimple: (json['fieldSetSimple'] as List<dynamic>?)
@@ -28,7 +28,7 @@ DefaultValueImplicit _$DefaultValueImplicitFromJson(
               .toSet() ??
           const {'entry1', 'entry2'},
       fieldMapSimple: (json['fieldMapSimple'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as int),
+            (k, e) => MapEntry(k, (e as num).toInt()),
           ) ??
           const {'answer': 42},
       fieldMapListString:
@@ -43,7 +43,7 @@ DefaultValueImplicit _$DefaultValueImplicitFromJson(
           $enumDecodeNullable(_$GreekEnumMap, json['fieldEnum']) ?? Greek.beta,
       durationField: json['durationField'] == null
           ? const Duration()
-          : Duration(microseconds: json['durationField'] as int),
+          : Duration(microseconds: (json['durationField'] as num).toInt()),
       constClass: json['constClass'] == null
           ? const ConstClass('value')
           : ConstClass.fromJson(json['constClass'] as Map<String, dynamic>),
@@ -55,7 +55,7 @@ DefaultValueImplicit _$DefaultValueImplicitFromJson(
           ? const ConstClass('value')
           : constClassFromJson(json['valueFromFunction'] as String),
       intDefaultValueFromFunction:
-          json['intDefaultValueFromFunction'] as int? ?? 43,
+          (json['intDefaultValueFromFunction'] as num?)?.toInt() ?? 43,
       valueFromDefaultValueDefaultConstructor:
           json['valueFromDefaultValueDefaultConstructor'] == null
               ? const ConstClass()

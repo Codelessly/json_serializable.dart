@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal
+// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal, inference_failure_on_function_invocation, inference_failure_on_collection_literal
 
 part of 'input.type_iterable.dart';
 
@@ -231,7 +231,7 @@ SimpleClassOfDuration _$SimpleClassOfDurationFromJson(
         Map<String, dynamic> json) =>
     SimpleClassOfDuration(
       (json['value'] as List<dynamic>)
-          .map((e) => Duration(microseconds: e as int)),
+          .map((e) => Duration(microseconds: (e as num).toInt())),
     );
 
 Map<String, dynamic> _$SimpleClassOfDurationToJson(
@@ -244,7 +244,7 @@ SimpleClassNullableOfDuration _$SimpleClassNullableOfDurationFromJson(
         Map<String, dynamic> json) =>
     SimpleClassNullableOfDuration(
       (json['value'] as List<dynamic>?)
-          ?.map((e) => Duration(microseconds: e as int)),
+          ?.map((e) => Duration(microseconds: (e as num).toInt())),
     );
 
 Map<String, dynamic> _$SimpleClassNullableOfDurationToJson(
@@ -256,8 +256,8 @@ Map<String, dynamic> _$SimpleClassNullableOfDurationToJson(
 SimpleClassOfDurationNullable _$SimpleClassOfDurationNullableFromJson(
         Map<String, dynamic> json) =>
     SimpleClassOfDurationNullable(
-      (json['value'] as List<dynamic>)
-          .map((e) => e == null ? null : Duration(microseconds: e as int)),
+      (json['value'] as List<dynamic>).map(
+          (e) => e == null ? null : Duration(microseconds: (e as num).toInt())),
     );
 
 Map<String, dynamic> _$SimpleClassOfDurationNullableToJson(
@@ -270,8 +270,8 @@ SimpleClassNullableOfDurationNullable
     _$SimpleClassNullableOfDurationNullableFromJson(
             Map<String, dynamic> json) =>
         SimpleClassNullableOfDurationNullable(
-          (json['value'] as List<dynamic>?)
-              ?.map((e) => e == null ? null : Duration(microseconds: e as int)),
+          (json['value'] as List<dynamic>?)?.map((e) =>
+              e == null ? null : Duration(microseconds: (e as num).toInt())),
         );
 
 Map<String, dynamic> _$SimpleClassNullableOfDurationNullableToJson(
@@ -446,7 +446,7 @@ Map<String, dynamic> _$SimpleClassNullableOfFromJsonObjectParamToJson(
 
 SimpleClassOfInt _$SimpleClassOfIntFromJson(Map<String, dynamic> json) =>
     SimpleClassOfInt(
-      (json['value'] as List<dynamic>).map((e) => e as int),
+      (json['value'] as List<dynamic>).map((e) => (e as num).toInt()),
     );
 
 Map<String, dynamic> _$SimpleClassOfIntToJson(SimpleClassOfInt instance) =>
@@ -457,7 +457,7 @@ Map<String, dynamic> _$SimpleClassOfIntToJson(SimpleClassOfInt instance) =>
 SimpleClassNullableOfInt _$SimpleClassNullableOfIntFromJson(
         Map<String, dynamic> json) =>
     SimpleClassNullableOfInt(
-      (json['value'] as List<dynamic>?)?.map((e) => e as int),
+      (json['value'] as List<dynamic>?)?.map((e) => (e as num).toInt()),
     );
 
 Map<String, dynamic> _$SimpleClassNullableOfIntToJson(
@@ -469,7 +469,7 @@ Map<String, dynamic> _$SimpleClassNullableOfIntToJson(
 SimpleClassOfIntNullable _$SimpleClassOfIntNullableFromJson(
         Map<String, dynamic> json) =>
     SimpleClassOfIntNullable(
-      (json['value'] as List<dynamic>).map((e) => e as int?),
+      (json['value'] as List<dynamic>).map((e) => (e as num?)?.toInt()),
     );
 
 Map<String, dynamic> _$SimpleClassOfIntNullableToJson(
@@ -481,7 +481,7 @@ Map<String, dynamic> _$SimpleClassOfIntNullableToJson(
 SimpleClassNullableOfIntNullable _$SimpleClassNullableOfIntNullableFromJson(
         Map<String, dynamic> json) =>
     SimpleClassNullableOfIntNullable(
-      (json['value'] as List<dynamic>?)?.map((e) => e as int?),
+      (json['value'] as List<dynamic>?)?.map((e) => (e as num?)?.toInt()),
     );
 
 Map<String, dynamic> _$SimpleClassNullableOfIntNullableToJson(
@@ -588,7 +588,7 @@ SimpleClassOfRecord _$SimpleClassOfRecordFromJson(Map<String, dynamic> json) =>
       (json['value'] as List<dynamic>).map((e) => _$recordConvert(
             e,
             ($jsonValue) => (
-              $jsonValue[r'$1'] as int,
+              ($jsonValue[r'$1'] as num).toInt(),
               $jsonValue[r'$2'] as String,
               truth: $jsonValue['truth'] as bool,
             ),
@@ -599,7 +599,7 @@ Map<String, dynamic> _$SimpleClassOfRecordToJson(
         SimpleClassOfRecord instance) =>
     <String, dynamic>{
       'value': instance.value
-          .map((e) => {
+          .map((e) => <String, dynamic>{
                 r'$1': e.$1,
                 r'$2': e.$2,
                 'truth': e.truth,
@@ -619,7 +619,7 @@ SimpleClassNullableOfRecord _$SimpleClassNullableOfRecordFromJson(
       (json['value'] as List<dynamic>?)?.map((e) => _$recordConvert(
             e,
             ($jsonValue) => (
-              $jsonValue[r'$1'] as int,
+              ($jsonValue[r'$1'] as num).toInt(),
               $jsonValue[r'$2'] as String,
               truth: $jsonValue['truth'] as bool,
             ),
@@ -630,7 +630,7 @@ Map<String, dynamic> _$SimpleClassNullableOfRecordToJson(
         SimpleClassNullableOfRecord instance) =>
     <String, dynamic>{
       'value': instance.value
-          ?.map((e) => {
+          ?.map((e) => <String, dynamic>{
                 r'$1': e.$1,
                 r'$2': e.$2,
                 'truth': e.truth,

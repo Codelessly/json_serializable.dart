@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+// ignore_for_file: inference_failure_on_instance_creation
+
 part of '_json_serializable_test_input.dart';
 
 @ShouldGenerate(r'''
@@ -9,11 +11,11 @@ JsonConverterNamedCtor<E> _$JsonConverterNamedCtorFromJson<E>(
         Map<String, dynamic> json) =>
     JsonConverterNamedCtor<E>()
       ..value = const _DurationMillisecondConverter.named()
-          .fromJson(json['value'] as int)
-      ..genericValue =
-          _GenericConverter<E>.named().fromJson(json['genericValue'] as int)
-      ..keyAnnotationFirst =
-          JsonConverterNamedCtor._fromJson(json['keyAnnotationFirst'] as int);
+          .fromJson((json['value'] as num).toInt())
+      ..genericValue = _GenericConverter<E>.named()
+          .fromJson((json['genericValue'] as num).toInt())
+      ..keyAnnotationFirst = JsonConverterNamedCtor._fromJson(
+          (json['keyAnnotationFirst'] as num).toInt());
 
 Map<String, dynamic> _$JsonConverterNamedCtorToJson<E>(
         JsonConverterNamedCtor<E> instance) =>
@@ -47,13 +49,13 @@ JsonConvertOnField<E> _$JsonConvertOnFieldFromJson<E>(
         Map<String, dynamic> json) =>
     JsonConvertOnField<E>()
       ..annotatedField = const _DurationMillisecondConverter()
-          .fromJson(json['annotatedField'] as int)
+          .fromJson((json['annotatedField'] as num).toInt())
       ..annotatedWithNamedCtor = const _DurationMillisecondConverter.named()
-          .fromJson(json['annotatedWithNamedCtor'] as int)
-      ..classAnnotatedWithField =
-          _durationConverter.fromJson(json['classAnnotatedWithField'] as int)
-      ..genericValue =
-          _GenericConverter<E>().fromJson(json['genericValue'] as int);
+          .fromJson((json['annotatedWithNamedCtor'] as num).toInt())
+      ..classAnnotatedWithField = _durationConverter
+          .fromJson((json['classAnnotatedWithField'] as num).toInt())
+      ..genericValue = _GenericConverter<E>()
+          .fromJson((json['genericValue'] as num).toInt());
 
 Map<String, dynamic> _$JsonConvertOnFieldToJson<E>(
         JsonConvertOnField<E> instance) =>

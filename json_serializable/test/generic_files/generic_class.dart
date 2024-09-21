@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+// ignore_for_file: inference_failure_on_instance_creation
+
 import 'package:collection/collection.dart';
 import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';
 
@@ -46,12 +48,15 @@ class GenericClass<T extends num, S> {
 @_DurationMillisecondConverter.named()
 @_DurationListMillisecondConverter()
 class GenericClassWithConverter<T extends num, S> {
+  // TODO: this annotation is a no-op. Need to figure out what to do about it!
   @_SimpleConverter()
   Object? fieldObject;
 
+  // TODO: this annotation is a no-op. Need to figure out what to do about it!
   @_SimpleConverter()
   dynamic fieldDynamic;
 
+  // TODO: this annotation is a no-op. Need to figure out what to do about it!
   @_SimpleConverter()
   int? fieldInt;
 

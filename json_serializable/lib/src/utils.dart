@@ -9,6 +9,7 @@ import 'package:codelessly_json_annotation/codelessly_json_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:source_helper/source_helper.dart';
 
+import 'shared_checkers.dart';
 import 'type_helpers/config_types.dart';
 
 const _jsonKeyChecker = TypeChecker.fromRuntime(JsonKey);
@@ -48,7 +49,7 @@ T enumValueForDartObject<T>(
 ) =>
     items[source.getField('index')!.toIntValue()!];
 
-/// Return an instance of [JsonSerializable] corresponding to a the provided
+/// Return an instance of [JsonSerializable] corresponding to the provided
 /// [reader].
 // #CHANGE WHEN UPDATING json_annotation
 JsonSerializable _valueForAnnotation(ConstantReader reader) => JsonSerializable(
@@ -58,6 +59,7 @@ JsonSerializable _valueForAnnotation(ConstantReader reader) => JsonSerializable(
       createFactory: reader.read('createFactory').literalValue as bool?,
       createToJson: reader.read('createToJson').literalValue as bool?,
       createFieldMap: reader.read('createFieldMap').literalValue as bool?,
+      createJsonKeys: reader.read('createJsonKeys').literalValue as bool?,
       createPerFieldToJson:
           reader.read('createPerFieldToJson').literalValue as bool?,
       disallowUnrecognizedKeys:
@@ -109,6 +111,7 @@ ClassConfig mergeConfig(
     createFactory: annotation.createFactory ?? config.createFactory,
     createToJson: annotation.createToJson ?? config.createToJson,
     createFieldMap: annotation.createFieldMap ?? config.createFieldMap,
+    createJsonKeys: annotation.createJsonKeys ?? config.createJsonKeys,
     createPerFieldToJson:
         annotation.createPerFieldToJson ?? config.createPerFieldToJson,
     disallowUnrecognizedKeys:
@@ -219,6 +222,33 @@ String typeToCode(
     return type.getDisplayString(withNullability: false);
   }
   throw UnimplementedError('(${type.runtimeType}) $type');
+}
+
+String? defaultDecodeLogic(
+  DartType targetType,
+  String expression, {
+  bool defaultProvided = false,
+}) {
+  if (targetType.isDartCoreObject && !targetType.isNullableType) {
+    final question = defaultProvided ? '?' : '';
+    return '$expression as Object$question';
+  } else if (targetType.isDartCoreObject || targetType is DynamicType) {
+    // just return it as-is. We'll hope it's safe.
+    return expression;
+  } else if (targetType.isDartCoreDouble) {
+    final targetTypeNullable = defaultProvided || targetType.isNullableType;
+    final question = targetTypeNullable ? '?' : '';
+    return '($expression as num$question)$question.toDouble()';
+  } else if (targetType.isDartCoreInt) {
+    final targetTypeNullable = defaultProvided || targetType.isNullableType;
+    final question = targetTypeNullable ? '?' : '';
+    return '($expression as num$question)$question.toInt()';
+  } else if (simpleJsonTypeChecker.isAssignableFromType(targetType)) {
+    final typeCode = typeToCode(targetType, forceNullable: defaultProvided);
+    return '$expression as $typeCode';
+  }
+
+  return null;
 }
 
 extension ExecutableElementExtension on ExecutableElement {

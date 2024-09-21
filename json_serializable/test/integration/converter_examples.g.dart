@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal
+// ignore_for_file: lines_longer_than_80_chars, text_direction_code_point_in_literal, inference_failure_on_function_invocation, inference_failure_on_collection_literal
 
 part of 'converter_examples.dart';
 
@@ -12,7 +12,7 @@ Issue1202RegressionClass _$Issue1202RegressionClassFromJson(
         Map<String, dynamic> json) =>
     Issue1202RegressionClass(
       value: $enumDecode(_$Issue1202RegressionEnumEnumMap, json['value']),
-      normalNullableValue: json['normalNullableValue'] as int?,
+      normalNullableValue: (json['normalNullableValue'] as num?)?.toInt(),
       notNullableValueWithNullableConverter:
           const _Issue1202RegressionConverter().fromJson(
               json['notNullableValueWithNullableConverter'] as String?),
