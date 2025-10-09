@@ -1,3 +1,7 @@
+## 7.0.0
+
+- Update Flutter v3.35.5.
+
 ## 6.8.0
 
 - Add type arguments to `Map` literals used for `Record` serialization.

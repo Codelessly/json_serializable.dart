@@ -1,11 +1,11 @@
 name: codelessly_json_serializable
-version: 6.8.0
+version: 7.0.0
 description: >-
   Automatically generate code for converting to and from JSON by annotating
   Dart classes.
 repository: https://github.com/google/json_serializable.dart/tree/master/json_serializable
 environment:
-  sdk: ^3.0.0
+  sdk: ">=3.8.0 <4.0.0"
 topics:
   - json
   - build-runner
@@ -18,12 +18,9 @@ dependencies:
   build: ^2.0.0
   build_config: '>=0.4.4 <2.0.0'
   collection: ^1.14.0
-
-  # Use a tight version constraint to ensure that a constraint on
-  # `json_annotation` properly constrains all features it provides.
-  codelessly_json_annotation: '>=4.9.0 <4.10.0'
-  meta: ^1.3.0
-  path: ^1.8.0
+  codelessly_json_annotation: ^5.0.0
+  meta: '>=1.17.0 <2.0.0'
+  path: '>=1.9.1 <2.0.0'
   pub_semver: ^2.0.0
   pubspec_parse: ^1.0.0
   source_gen: ^1.3.2

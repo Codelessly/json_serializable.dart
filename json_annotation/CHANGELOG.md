@@ -1,3 +1,7 @@
+## 5.0.0
+
+- Update Flutter v3.35.5.
+
 ## 4.9.0+2
 
 - Export Json converters.
